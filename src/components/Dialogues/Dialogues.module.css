@@ -5,14 +5,17 @@
 
 .dialoguesItems {
     padding: 10px;
+    color: white;
 }
+
 .dialoguesItems .active {
     color: gold;
 }
+
 .messages {
     padding: 10px;
 }
 
 .messages.message {
-
+    color: white;
 }
