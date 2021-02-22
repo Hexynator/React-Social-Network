@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import store from "./redux/State";
 
- let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={state}

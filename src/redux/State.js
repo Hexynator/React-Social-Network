@@ -44,7 +44,7 @@ let store = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-        updateNewPostText(newText) {
+    updateNewPostText(newText) {
 
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
