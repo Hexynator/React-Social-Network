@@ -27,8 +27,7 @@ const Dialogues = (props) => {
                 {messagesElements}
                 <div>
                     <textarea value={newMessageBody}
-                              onChange={onNewMessageChange}
-                              placeholder='Enter your message here'>
+                              onChange={onNewMessageChange}>
                               </textarea>
                 </div>
                 <div>
@@ -40,5 +39,5 @@ const Dialogues = (props) => {
         </div>
     );
 }
-
+ // for test
 export default Dialogues;
