@@ -1,51 +1,26 @@
 import React from 'react';
+import * as axios from "axios";
+import imagemock from '../../Assets/Images/imagemock.jpeg'
 import styles from './Users.module.css'
 
 let Users = (props) => {
 
-    if (props.users.length === 0 ) { // set users only if there is no users, otherwise there is loop which leads to react maximum depth error
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'https://styles.redditmedia.com/t5_3mxbb7/styles/communityIcon_n8b48e315ra61.png?width=256&s=2a4afb06bd95b4ad2ceaebd132dbe114c5a1f18a',
-                followed: false,
-                fullName: 'John',
-                status: 'Developer',
-                location: {city: 'Los Angeles', country: 'United States of America'}
-            },
-            {
-                id: 2,
-                photoUrl: 'https://styles.redditmedia.com/t5_3mxbb7/styles/communityIcon_n8b48e315ra61.png?width=256&s=2a4afb06bd95b4ad2ceaebd132dbe114c5a1f18a',
-                followed: false,
-                fullName: 'Rich',
-                status: 'Developer',
-                location: {city: 'Oslo', country: 'Norway'}
-            },
-            {
-                id: 3,
-                photoUrl: 'https://styles.redditmedia.com/t5_3mxbb7/styles/communityIcon_n8b48e315ra61.png?width=256&s=2a4afb06bd95b4ad2ceaebd132dbe114c5a1f18a',
-                followed: true,
-                fullName: 'Mike',
-                status: 'Developer',
-                location: {city: 'Helsinki ', country: 'Finland'}
-            },
-            {
-                id: 4,
-                photoUrl: 'https://styles.redditmedia.com/t5_3mxbb7/styles/communityIcon_n8b48e315ra61.png?width=256&s=2a4afb06bd95b4ad2ceaebd132dbe114c5a1f18a',
-                followed: true,
-                fullName: 'Jose',
-                status: 'Developer',
-                location: {city: 'Tallinn', country: 'Estonia'}
-            },]);
+    let getUsers = () => {
+
+    if (props.users.length === 0) { // set users only if there is no users, otherwise there is loop which leads to react maximum depth error
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+        });
+     }
     }
-
-
     return <div>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} className={styles.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : imagemock} className={styles.userPhoto}/>
                     </div>
                     <div>
                         {u.followed ? <button onClick={() => {
@@ -58,12 +33,12 @@ let Users = (props) => {
                     </span>
                 <span>
                     <span>
-                     <div>{u.fullName}</div>
+                     <div>{u.name}</div>
                     <div>{u.status}</div>
                 </span>
                 <span>
-                    <div>{u.location.country}</div>
-                    <div>{u.location.city}</div>
+                    <div>{"u.location.country"}</div>
+                    <div>{"u.location.city"}</div>
                 </span>
                 </span>
             </div>)
