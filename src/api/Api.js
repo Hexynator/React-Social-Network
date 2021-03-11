@@ -1,12 +1,13 @@
 import * as axios from "axios";
+import {API_KEY} from "./base";
 
+console.log(API_KEY)
 const instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
-    headers: {
-    }
-});
+    headers: {"API-KEY": API_KEY}
 
+});
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
